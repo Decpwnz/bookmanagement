@@ -1,7 +1,7 @@
 import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Book } from '../schemas/book.schema';
+import { Book } from '../schemas/books/book.schema';
 import { CreateBookDto } from '../dto/books/create-book.dto';
 import { UpdateBookDto } from '../dto/books/update-book.dto';
 

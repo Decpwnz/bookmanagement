@@ -6,10 +6,13 @@ import {
   Param,
   Put,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { BooksService } from './books.service';
 import { CreateBookDto } from 'src/dto/books/create-book.dto';
 import { UpdateBookDto } from 'src/dto/books/update-book.dto';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { GetUser } from 'src/auth/get-user.decorator';
 
 @Controller('books')
 export class BooksController {
@@ -20,6 +23,11 @@ export class BooksController {
     return this.booksService.create(createBookDto);
   }
 
+  @UseGuards(JwtAuthGuard)
+  @Get('profile')
+  getProfile(@GetUser() user: any) {
+    return user;
+  }
   @Get()
   findAll() {
     return this.booksService.findAll();
